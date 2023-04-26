@@ -1,5 +1,6 @@
 import {useQuery} from '@tanstack/react-query';
-import axios from 'axios';
+import axios, {AxiosError} from 'axios';
+import {GetAllUsersResponse} from '../types/ApiResponses';
 
 const getAllUsers = async () => {
   const {data} = await axios.get('https://dummyjson.com/users');
@@ -7,7 +8,11 @@ const getAllUsers = async () => {
 };
 
 export default function getAllUsersApi() {
-  return useQuery(['users'], () => getAllUsers(), {
-    staleTime: Infinity,
-  });
+  return useQuery<GetAllUsersResponse, AxiosError>(
+    ['users'],
+    () => getAllUsers(),
+    {
+      staleTime: Infinity,
+    },
+  );
 }

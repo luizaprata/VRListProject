@@ -1,18 +1,19 @@
 import React from 'react';
-import type {PropsWithChildren} from 'react';
 import {
   SafeAreaView,
   ScrollView,
   StatusBar,
-  StyleSheet,
   Text,
-  View,
 } from 'react-native';
 import ContactItem from './ContactItem';
 import useAllUsersData from './useAllUsersData';
 
 function ContactManagerListScreen(): JSX.Element {
-  const {isLoading, data, error} = useAllUsersData();
+  const { isLoading, data, error } = useAllUsersData();
+
+  if (error) {
+    return <Text>{error.message}</Text>;
+  }
 
   return (
     <SafeAreaView>
@@ -21,7 +22,9 @@ function ContactManagerListScreen(): JSX.Element {
         <Text>Carregando...</Text>
       ) : (
         <ScrollView contentInsetAdjustmentBehavior="automatic">
-          <ContactItem title="Step One" />
+          {data?.users.map(item => (
+            <ContactItem key={item.id} title={item.firstName} />
+          ))}
         </ScrollView>
       )}
     </SafeAreaView>
