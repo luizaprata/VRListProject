@@ -3,7 +3,7 @@
  */
 
 import {AppRegistry} from 'react-native';
-import ContactManagerListScreen from './src/modules/contact-manager/ContactManagerListScreen';
 import {name as appName} from './app.json';
+import App from './src/App';
 
-AppRegistry.registerComponent(appName, () => ContactManagerListScreen);
+AppRegistry.registerComponent(appName, () => App);

@@ -1,22 +1,13 @@
+import {useQuery} from '@tanstack/react-query';
+import axios from 'axios';
 
- 
+const getAllUsers = async () => {
+  const {data} = await axios.get('https://dummyjson.com/users');
+  return data;
+};
 
-import URLS from 'resources/urls';
-import { useEffect } from 'react';
-
-export default function useAllCategoriesApi() {
-  const {
-    isLoading,
-    errorMessage,
-    payload,
-    clearErrorMessage,
-    fetchData,
-  } = <CategoriesResponse>('get', URLS.TRIVIA.GET_ALL_CATEGORIES);
-
-  useEffect(() => {
-    fetchData();
-    return () => {};
-  }, [fetchData]);
-
-  return { payload, isLoading, errorMessage, clearErrorMessage };
+export default function getAllUsersApi() {
+  return useQuery(['users'], () => getAllUsers(), {
+    staleTime: Infinity,
+  });
 }
