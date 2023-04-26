@@ -6,10 +6,10 @@ import {
   Text,
 } from 'react-native';
 import ContactItem from './ContactItem';
-import useAllUsersData from './useAllUsersData';
+import useAllUsersQuery from './useAllUsersQuery';
 
 function ContactManagerListScreen(): JSX.Element {
-  const { isLoading, data, error } = useAllUsersData();
+  const { isLoading, data, error } = useAllUsersQuery();
 
   if (error) {
     return <Text>{error.message}</Text>;
@@ -22,8 +22,8 @@ function ContactManagerListScreen(): JSX.Element {
         <Text>Carregando...</Text>
       ) : (
         <ScrollView contentInsetAdjustmentBehavior="automatic">
-          {data?.users.map(item => (
-            <ContactItem key={item.id} title={item.firstName} />
+          {data?.users.map(user => (
+            <ContactItem testID={`user-${user.id}`} key={user.id} title={user.firstName} />
           ))}
         </ScrollView>
       )}

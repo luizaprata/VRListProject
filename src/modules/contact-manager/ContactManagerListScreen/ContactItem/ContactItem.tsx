@@ -1,14 +1,15 @@
 import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {Text, View} from 'react-native';
+import type { PropsWithChildren } from 'react';
+import { Text, View } from 'react-native';
 
 type ContactItemProps = PropsWithChildren<{
   title: string;
+  testID: string
 }>;
 
-function ContactItem({title}: ContactItemProps): JSX.Element {
+function ContactItem({ title, testID }: ContactItemProps): JSX.Element {
   return (
-    <View>
+    <View testID={testID}>
       <Text>{title}</Text>
     </View>
   );
