@@ -3,30 +3,15 @@ import { render, screen, } from "@testing-library/react-native";
 import ContactManagerListScreen from "./ContactManagerListScreen";
 import useAllUsersQuery from "./useAllUsersQuery";
 
-jest.mock("./useAllUsersQuery");
-
+jest.mock("./useAllUsersQuery")
 const mockedUseUsersQuery = useAllUsersQuery as jest.Mock;
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: false,
-    },
-  },
-});
-
-const wrapper = ({ children }) => (
-  <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-);
-
-export default wrapper;
 
 describe("Users component", () => {
   it("Displays the loading view", () => {
     mockedUseUsersQuery.mockImplementation(() => ({
       isLoading: true,
     }));
-    render(<ContactManagerListScreen />, { wrapper });
+    render(<ContactManagerListScreen />);
     expect(screen.getByText(/Carregando.../i)).toBeVisible();
   });
 
@@ -34,7 +19,7 @@ describe("Users component", () => {
     mockedUseUsersQuery.mockImplementation(() => ({
       error: { message: "Error message" },
     }));
-    render(<ContactManagerListScreen />, { wrapper });
+    render(<ContactManagerListScreen />);
     expect(screen.getByText(/Error message/i)).toBeVisible();
   });
 
@@ -47,7 +32,7 @@ describe("Users component", () => {
         ]
       }
     }));
-    render(<ContactManagerListScreen />, { wrapper });
+    render(<ContactManagerListScreen />);
     expect(screen.getByTestId("user-1")).toBeVisible();
     expect(screen.getByTestId("user-1")).toHaveTextContent("test user");
 
