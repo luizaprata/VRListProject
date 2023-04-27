@@ -1,22 +1,23 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, screen, } from "@testing-library/react-native";
 import ContactManagerDetailsScreen from "./ContactManagerDetailsScreen";
-import useAllUsersQuery from "../hooks/useUserDetailQuery";
+import useUserDetailQuery from "../hooks/useUserDetailQuery";
 
-jest.mock("./useAllUsersQuery")
-const mockedUseUsersQuery = useAllUsersQuery as jest.Mock;
+jest.mock("../hooks/useUserDetailQuery")
+const mockedUseUserDetailQuery = useUserDetailQuery as jest.Mock;
+const routeMock = { param: { userId: 0 } }
 
 describe("Users component", () => {
   it("Displays the loading view", () => {
-    mockedUseUsersQuery.mockImplementation(() => ({
+    mockedUseUserDetailQuery.mockImplementation(() => ({
       isLoading: true,
     }));
-    render(<ContactManagerDetailsScreen />);
+    render(<ContactManagerDetailsScreen route={routeMock} />);
     expect(screen.getByText(/Carregando.../i)).toBeVisible();
   });
 
   it("Displays the error message", () => {
-    mockedUseUsersQuery.mockImplementation(() => ({
+    mockedUseUserDetailQuery.mockImplementation(() => ({
       error: { message: "Error message" },
     }));
     render(<ContactManagerDetailsScreen />);
@@ -24,7 +25,7 @@ describe("Users component", () => {
   });
 
   it("should render users list", () => {
-    mockedUseUsersQuery.mockImplementation(() => ({
+    mockedUseUserDetailQuery.mockImplementation(() => ({
       data: {
         users: [
           { id: 1, firstName: "test user" },

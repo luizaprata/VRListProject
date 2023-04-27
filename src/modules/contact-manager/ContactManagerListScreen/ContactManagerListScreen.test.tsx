@@ -1,17 +1,18 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, screen, } from "@testing-library/react-native";
 import ContactManagerListScreen from "./ContactManagerListScreen";
-import useAllUsersQuery from "../hooks/useUsersListApi";
+import useUsersListQuery from "../hooks/useUsersListQuery";
 
-jest.mock("./useAllUsersQuery")
-const mockedUseUsersQuery = useAllUsersQuery as jest.Mock;
+jest.mock("../hooks/useUsersListQuery")
+const mockedUseUsersQuery = useUsersListQuery as jest.Mock;
 
 describe("Users component", () => {
+  const navigationMock = { navigate: jest.fn() }
+
   it("Displays the loading view", () => {
     mockedUseUsersQuery.mockImplementation(() => ({
       isLoading: true,
     }));
-    render(<ContactManagerListScreen />);
+    render(<ContactManagerListScreen navigation={navigationMock} />);
     expect(screen.getByText(/Carregando.../i)).toBeVisible();
   });
 
@@ -19,7 +20,7 @@ describe("Users component", () => {
     mockedUseUsersQuery.mockImplementation(() => ({
       error: { message: "Error message" },
     }));
-    render(<ContactManagerListScreen />);
+    render(<ContactManagerListScreen navigation={navigationMock} />);
     expect(screen.getByText(/Error message/i)).toBeVisible();
   });
 
@@ -32,7 +33,7 @@ describe("Users component", () => {
         ]
       }
     }));
-    render(<ContactManagerListScreen />);
+    render(<ContactManagerListScreen navigation={navigationMock} />);
     expect(screen.getByTestId("user-1")).toBeVisible();
     expect(screen.getByTestId("user-1")).toHaveTextContent("test user");
 

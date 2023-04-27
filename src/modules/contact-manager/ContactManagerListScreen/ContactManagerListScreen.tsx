@@ -6,14 +6,14 @@ import {
   Text,
 } from 'react-native';
 import ContactItem from './ContactItem';
-import useUsersListApi from '../hooks/useUsersListApi';
+import useUsersListQuery from '../hooks/useUsersListQuery';
 import { RootStackParamList } from '../ContactManagerRoutes';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'ContactManager'>;
 
 function ContactManagerListScreen({ navigation }: Props): JSX.Element {
-  const { isLoading, data, error } = useUsersListApi();
+  const { isLoading, data, error } = useUsersListQuery();
 
   if (error) {
     return <Text>{error.message}</Text>;
