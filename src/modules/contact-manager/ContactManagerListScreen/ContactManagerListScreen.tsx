@@ -15,8 +15,8 @@ function ContactManagerListScreen({ navigation }): JSX.Element {
     return <Text>{error.message}</Text>;
   }
 
-  const onContactPress = (id: number) => {
-    navigation.navigate("ContactManager--details")
+  const onContactPress = (userId: number) => {
+    navigation.navigate("ContactManagerDetails", { userId })
   }
 
   return (
