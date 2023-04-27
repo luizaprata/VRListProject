@@ -1,6 +1,6 @@
 import {useQuery} from '@tanstack/react-query';
-import {userKeyFactory} from '../../../api/user/user-key-factory';
-import {getAllUsers} from '../../../api/user/get-all-users';
+import {userKeyFactory} from '@api/user/user-key-factory';
+import {getAllUsers} from '@api/user/get-all-users';
 
 export default function useUsersListApi() {
   return useQuery({

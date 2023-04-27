@@ -2,13 +2,16 @@ module.exports = {
   presets: ['module:metro-react-native-babel-preset'],
   plugins: [
     [
-      "module-resolver",
+      'module-resolver',
       {
+        root: ['./src'],
+        extensions: ['.ts', '.tsx', '.jsx', '.js', '.json'],
         alias: {
           // This needs to be mirrored in tsconfig.json
-          "resources": ["./src/resources/*"]
+          '@modules': ['./src/modules'],
+          '@api': ['./src/api'],
         },
       },
     ],
-  ]
+  ],
 };
