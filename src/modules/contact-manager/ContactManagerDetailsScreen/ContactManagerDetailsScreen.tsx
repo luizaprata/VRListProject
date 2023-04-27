@@ -1,20 +1,17 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  Text,
-} from 'react-native';
+import {SafeAreaView, ScrollView, StatusBar, Text} from 'react-native';
 import useUserDetailQuery from '../hooks/useUserDetailQuery';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../ContactManagerRoutes';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {RootStackParamList} from '../ContactManagerRoutes';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'ContactManagerDetails'>;
+type Props = NativeStackScreenProps<
+  RootStackParamList,
+  'ContactManagerDetails'
+>;
 
-function ContactManagerDetailsScreen({ route }: Props) {
-
-  const { userId } = route.params
-  const { isLoading, data, error } = useUserDetailQuery(userId);
+function ContactManagerDetailsScreen({route}: Props) {
+  const {userId} = route.params;
+  const {isLoading, data, error} = useUserDetailQuery(userId);
 
   if (error) {
     return <Text>{error.message}</Text>;
