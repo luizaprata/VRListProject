@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import ContactItem from './ContactItem';
 import useUsersListApi from '../hooks/useUsersListApi';
-import { RootStackParamList } from '../routes';
+import { RootStackParamList } from '../ContactManagerRoutes';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'ContactManager'>;

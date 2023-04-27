@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import useUserDetailQuery from '../hooks/useUserDetailQuery';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../routes';
+import { RootStackParamList } from '../ContactManagerRoutes';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'ContactManagerDetails'>;
 
