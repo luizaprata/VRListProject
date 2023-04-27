@@ -1,16 +1,22 @@
 import React from 'react';
 import type { PropsWithChildren } from 'react';
-import { Text, View } from 'react-native';
+import { Text, Button, View } from 'react-native';
+import { User } from 'src/types/User';
 
 type ContactItemProps = PropsWithChildren<{
-  title: string;
-  testID: string
+  user: User
+  testID: string;
+  onContactPress: (id: number) => void
 }>;
 
-function ContactItem({ title, testID }: ContactItemProps): JSX.Element {
+function ContactItem({ onContactPress, user, testID }: ContactItemProps): JSX.Element {
   return (
     <View testID={testID}>
-      <Text>{title}</Text>
+      <Text>{user.firstName}</Text>
+      <Button
+        title="Mais Detalhes"
+        onPress={() => onContactPress(user.id)}
+      />
     </View>
   );
 }

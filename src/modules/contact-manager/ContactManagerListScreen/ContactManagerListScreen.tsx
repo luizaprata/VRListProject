@@ -6,13 +6,17 @@ import {
   Text,
 } from 'react-native';
 import ContactItem from './ContactItem';
-import useAllUsersQuery from './useAllUsersQuery';
+import useUsersListApi from './useUsersListApi';
 
-function ContactManagerListScreen(): JSX.Element {
-  const { isLoading, data, error } = useAllUsersQuery();
+function ContactManagerListScreen({ navigation }): JSX.Element {
+  const { isLoading, data, error } = useUsersListApi();
 
   if (error) {
     return <Text>{error.message}</Text>;
+  }
+
+  const onContactPress = (id: number) => {
+    navigation.navigate("ContactManager--details")
   }
 
   return (
@@ -24,7 +28,7 @@ function ContactManagerListScreen(): JSX.Element {
         ) : (
           <ScrollView contentInsetAdjustmentBehavior="automatic">
             {data?.users.map(user => (
-              <ContactItem testID={`user-${user.id}`} key={user.id} title={user.firstName} />
+              <ContactItem onContactPress={onContactPress} testID={`user-${user.id}`} key={user.id} user={user} />
             ))}
           </ScrollView>
         )}
