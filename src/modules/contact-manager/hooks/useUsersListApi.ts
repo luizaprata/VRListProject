@@ -1,9 +1,10 @@
 import {useQuery} from '@tanstack/react-query';
 import {userKeyFactory} from '@api/user/user-key-factory';
-import {getAllUsers} from '@api/user/get-all-users';
+import {GetAllUsersResponse, getAllUsers} from '@api/user/get-all-users';
+import {AxiosError} from 'axios';
 
-export default function useUserDetailQuery() {
-  return useQuery({
+export default function useUsersListApi() {
+  return useQuery<GetAllUsersResponse, AxiosError>({
     queryKey: userKeyFactory.allUsers,
     queryFn: getAllUsers,
     staleTime: Infinity,

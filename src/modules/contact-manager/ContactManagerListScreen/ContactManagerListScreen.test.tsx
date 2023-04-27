@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render, screen, } from "@testing-library/react-native";
 import ContactManagerListScreen from "./ContactManagerListScreen";
-import useAllUsersQuery from "./useUsersListApi";
+import useAllUsersQuery from "../hooks/useUsersListApi";
 
 jest.mock("./useAllUsersQuery")
 const mockedUseUsersQuery = useAllUsersQuery as jest.Mock;

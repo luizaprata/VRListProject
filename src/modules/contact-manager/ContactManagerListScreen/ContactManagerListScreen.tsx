@@ -6,7 +6,7 @@ import {
   Text,
 } from 'react-native';
 import ContactItem from './ContactItem';
-import useUsersListApi from './useUsersListApi';
+import useUsersListApi from '../hooks/useUsersListApi';
 
 function ContactManagerListScreen({ navigation }): JSX.Element {
   const { isLoading, data, error } = useUsersListApi();

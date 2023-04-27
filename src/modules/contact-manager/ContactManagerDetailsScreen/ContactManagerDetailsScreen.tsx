@@ -5,7 +5,7 @@ import {
   StatusBar,
   Text,
 } from 'react-native';
-import useUserDetailQuery from './useUserDetailQuery';
+import useUserDetailQuery from '../hooks/useUserDetailQuery';
 
 function ContactManagerDetailsScreen(): JSX.Element {
   const { isLoading, data, error } = useUserDetailQuery();
