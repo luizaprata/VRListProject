@@ -5,7 +5,7 @@ import ContactManagerListScreen from './ContactManagerListScreen';
 
 export type RootStackParamList = {
   ContactManager: undefined;
-  ContactManagerDetails: { userId: string };
+  ContactManagerDetails: { userId: number };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();

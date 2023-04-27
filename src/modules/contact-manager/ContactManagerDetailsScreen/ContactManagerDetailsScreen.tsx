@@ -6,9 +6,15 @@ import {
   Text,
 } from 'react-native';
 import useUserDetailQuery from '../hooks/useUserDetailQuery';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../routes';
 
-function ContactManagerDetailsScreen(): JSX.Element {
-  const { isLoading, data, error } = useUserDetailQuery();
+type Props = NativeStackScreenProps<RootStackParamList, 'ContactManagerDetails'>;
+
+function ContactManagerDetailsScreen({ route }: Props) {
+
+  const { userId } = route.params
+  const { isLoading, data, error } = useUserDetailQuery(userId);
 
   if (error) {
     return <Text>{error.message}</Text>;
