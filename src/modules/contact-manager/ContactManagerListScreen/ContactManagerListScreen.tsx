@@ -16,18 +16,20 @@ function ContactManagerListScreen(): JSX.Element {
   }
 
   return (
-    <SafeAreaView>
+    <>
       <StatusBar barStyle="dark-content" />
-      {isLoading ? (
-        <Text>Carregando...</Text>
-      ) : (
-        <ScrollView contentInsetAdjustmentBehavior="automatic">
-          {data?.users.map(user => (
-            <ContactItem testID={`user-${user.id}`} key={user.id} title={user.firstName} />
-          ))}
-        </ScrollView>
-      )}
-    </SafeAreaView>
+      <SafeAreaView>
+        {isLoading ? (
+          <Text>Carregando...</Text>
+        ) : (
+          <ScrollView contentInsetAdjustmentBehavior="automatic">
+            {data?.users.map(user => (
+              <ContactItem testID={`user-${user.id}`} key={user.id} title={user.firstName} />
+            ))}
+          </ScrollView>
+        )}
+      </SafeAreaView>
+    </>
   );
 }
 
