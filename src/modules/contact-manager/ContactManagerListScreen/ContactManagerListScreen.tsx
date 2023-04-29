@@ -1,9 +1,11 @@
-import React from 'react';
-import {SafeAreaView, ScrollView, StatusBar, Text} from 'react-native';
-import ContactItem from './ContactItem';
-import useUsersListQuery from '../hooks/useUsersListQuery';
-import {RootStackParamList} from '../ContactManagerRoutes';
+import DefaultLayout from '@components/Layout/DefaultLayout';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import React from 'react';
+import {ScrollView, Text} from 'react-native';
+
+import {RootStackParamList} from '../ContactManagerRoutes';
+import useUsersListQuery from '../hooks/useUsersListQuery';
+import ContactItem from './ContactItem';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'ContactManager'>;
 
@@ -19,25 +21,22 @@ function ContactManagerListScreen({navigation}: Props): JSX.Element {
   };
 
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        {isLoading ? (
-          <Text>Carregando...</Text>
-        ) : (
-          <ScrollView contentInsetAdjustmentBehavior="automatic">
-            {data?.users.map(user => (
-              <ContactItem
-                onContactPress={onContactPress}
-                testID={`user-${user.id}`}
-                key={user.id}
-                user={user}
-              />
-            ))}
-          </ScrollView>
-        )}
-      </SafeAreaView>
-    </>
+    <DefaultLayout>
+      {isLoading ? (
+        <Text>Carregando...</Text>
+      ) : (
+        <ScrollView contentInsetAdjustmentBehavior="automatic">
+          {data?.users.map(user => (
+            <ContactItem
+              onContactPress={onContactPress}
+              testID={`user-${user.id}`}
+              key={user.id}
+              user={user}
+            />
+          ))}
+        </ScrollView>
+      )}
+    </DefaultLayout>
   );
 }
 

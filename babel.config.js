@@ -8,6 +8,7 @@ module.exports = {
         extensions: ['.ts', '.tsx', '.jsx', '.js', '.json'],
         alias: {
           // This needs to be mirrored in tsconfig.json
+          '@components': ['./src/components'],
           '@modules': ['./src/modules'],
           '@api': ['./src/api'],
         },

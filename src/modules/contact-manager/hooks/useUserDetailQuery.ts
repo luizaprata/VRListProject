@@ -1,7 +1,7 @@
-import {useQuery} from '@tanstack/react-query';
+import {getUserById, GetUsersByIdResponse} from '@api/user/get-user-by-id';
 import {userKeyFactory} from '@api/user/user-key-factory';
+import {useQuery} from '@tanstack/react-query';
 import {AxiosError} from 'axios';
-import {GetUsersByIdResponse, getUserById} from '@api/user/get-user-by-id';
 
 export default function useUserDetailQuery(userId: number) {
   const queryKey = userKeyFactory.userById(userId);

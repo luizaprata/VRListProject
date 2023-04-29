@@ -1,7 +1,8 @@
-import React from 'react';
 import {render, screen} from '@testing-library/react-native';
-import ContactManagerDetailsScreen from './ContactManagerDetailsScreen';
+import React from 'react';
+
 import useUserDetailQuery from '../hooks/useUserDetailQuery';
+import ContactManagerDetailsScreen from './ContactManagerDetailsScreen';
 
 jest.mock('../hooks/useUserDetailQuery');
 const mockedUseUserDetailQuery = useUserDetailQuery as jest.Mock;

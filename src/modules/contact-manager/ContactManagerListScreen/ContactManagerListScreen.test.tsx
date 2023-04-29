@@ -1,7 +1,8 @@
-import React from 'react';
 import {fireEvent, render, screen} from '@testing-library/react-native';
-import ContactManagerListScreen from './ContactManagerListScreen';
+import React from 'react';
+
 import useUsersListQuery from '../hooks/useUsersListQuery';
+import ContactManagerListScreen from './ContactManagerListScreen';
 
 jest.mock('../hooks/useUsersListQuery');
 const mockedUseUsersQuery = useUsersListQuery as jest.Mock;

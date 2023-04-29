@@ -1,7 +1,7 @@
 import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {Text, Button, View} from 'react-native';
 import {User} from '@api/types/User';
+import type {PropsWithChildren} from 'react';
+import {Button, Text, View} from 'react-native';
 
 type ContactItemProps = PropsWithChildren<{
   user: User;

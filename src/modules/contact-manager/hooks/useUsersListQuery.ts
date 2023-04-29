@@ -1,6 +1,6 @@
-import {useQuery} from '@tanstack/react-query';
+import {getAllUsers, GetAllUsersResponse} from '@api/user/get-all-users';
 import {userKeyFactory} from '@api/user/user-key-factory';
-import {GetAllUsersResponse, getAllUsers} from '@api/user/get-all-users';
+import {useQuery} from '@tanstack/react-query';
 import {AxiosError} from 'axios';
 
 export default function useUsersListQuery() {

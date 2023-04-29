@@ -1,5 +1,6 @@
-import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import React from 'react';
+
 import ContactManagerDetailsScreen from './ContactManagerDetailsScreen';
 import ContactManagerListScreen from './ContactManagerListScreen';
 

@@ -4,6 +4,7 @@
     "baseUrl": ".",
     "paths": {
       // This needs to be mirrored in babel.config.js
+      "@components/*": ["./src/components/*"],
       "@modules/*": ["./src/modules/*"],
       "@api/*": ["./src/api/*"]
     }

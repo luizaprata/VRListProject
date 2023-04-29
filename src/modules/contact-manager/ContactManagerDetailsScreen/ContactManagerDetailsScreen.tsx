@@ -1,8 +1,9 @@
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import {SafeAreaView, ScrollView, StatusBar, Text} from 'react-native';
-import useUserDetailQuery from '../hooks/useUserDetailQuery';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
+
 import {RootStackParamList} from '../ContactManagerRoutes';
+import useUserDetailQuery from '../hooks/useUserDetailQuery';
 
 type Props = NativeStackScreenProps<
   RootStackParamList,
