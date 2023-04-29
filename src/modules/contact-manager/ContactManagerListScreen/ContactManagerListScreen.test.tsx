@@ -67,7 +67,7 @@ describe('Contact Manager List Screen', () => {
     }));
     render(<ContactManagerListScreen navigation={navigationMock} />);
 
-    const button = screen.getByTestId('user-1-button');
+    const button = screen.getByTestId('user-1');
     fireEvent.press(button);
     expect(navigationMock.navigate).toHaveBeenCalledWith(
       'ContactManagerDetails',

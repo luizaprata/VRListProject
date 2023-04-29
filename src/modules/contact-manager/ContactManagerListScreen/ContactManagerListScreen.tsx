@@ -1,7 +1,7 @@
 import React from 'react';
 import DefaultLayout from '@components/Layout/DefaultLayout';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {ScrollView, Text} from 'react-native';
+import {FlatList, Text} from 'react-native';
 
 import {RootStackParamList} from '../ContactManagerRoutes';
 import useUsersListQuery from '../hooks/useUsersListQuery';
@@ -25,16 +25,13 @@ function ContactManagerListScreen({navigation}: Props): JSX.Element {
       {isLoading ? (
         <Text>Carregando...</Text>
       ) : (
-        <>
-          {data?.users.map(user => (
-            <ContactItem
-              onContactPress={onContactPress}
-              testID={`user-${user.id}`}
-              key={user.id}
-              user={user}
-            />
-          ))}
-        </>
+        <FlatList
+          data={data.users}
+          keyExtractor={item => `userKey-${item.id}`}
+          renderItem={item => (
+            <ContactItem onContactPress={onContactPress} listInfo={item} />
+          )}
+        />
       )}
     </DefaultLayout>
   );

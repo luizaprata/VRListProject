@@ -1,28 +1,35 @@
 import React from 'react';
 import {User} from '@api/types/User';
 import type {PropsWithChildren} from 'react';
-import {Button, Text, View} from 'react-native';
+import {Image, TouchableOpacity, Text, ListRenderItemInfo} from 'react-native';
+import styles from './ContactItem.styles';
 
 type ContactItemProps = PropsWithChildren<{
-  user: User;
-  testID: string;
+  listInfo: ListRenderItemInfo<User>;
   onContactPress: (id: number) => void;
 }>;
 
 function ContactItem({
   onContactPress,
-  user,
-  testID,
+  listInfo,
 }: ContactItemProps): JSX.Element {
+  const user = listInfo.item;
   return (
-    <View testID={testID}>
-      <Text>{user.firstName}</Text>
-      <Button
-        testID={`${testID}-button`}
-        title="Mais Detalhes"
-        onPress={() => onContactPress(user.id)}
+    <TouchableOpacity
+      testID={`user-${user.id}`}
+      onPress={() => onContactPress(user.id)}
+      style={styles.profileContainer}>
+      <Image
+        style={styles.avatar}
+        source={{
+          uri: user.image,
+        }}
       />
-    </View>
+      <Text style={styles.text}>
+        {user.firstName} {user.lastName}
+      </Text>
+      <Text style={styles.arrow}>{'>'}</Text>
+    </TouchableOpacity>
   );
 }
 

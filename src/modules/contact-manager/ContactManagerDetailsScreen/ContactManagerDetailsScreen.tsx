@@ -24,9 +24,7 @@ function ContactManagerDetailsScreen({route}: Props) {
       {isLoading ? (
         <Text>Carregando...</Text>
       ) : (
-        <ScrollView contentInsetAdjustmentBehavior="automatic">
-          <Text>{JSON.stringify(data, null, ' ')}</Text>
-        </ScrollView>
+        <Text>{JSON.stringify(data, null, ' ')}</Text>
       )}
     </DefaultLayout>
   );
