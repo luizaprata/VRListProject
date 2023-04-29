@@ -1,6 +1,6 @@
+import React from 'react';
 import DefaultLayout from '@components/Layout/DefaultLayout';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import React from 'react';
 import {ScrollView, Text} from 'react-native';
 
 import {RootStackParamList} from '../ContactManagerRoutes';
@@ -25,7 +25,7 @@ function ContactManagerListScreen({navigation}: Props): JSX.Element {
       {isLoading ? (
         <Text>Carregando...</Text>
       ) : (
-        <ScrollView contentInsetAdjustmentBehavior="automatic">
+        <>
           {data?.users.map(user => (
             <ContactItem
               onContactPress={onContactPress}
@@ -34,7 +34,7 @@ function ContactManagerListScreen({navigation}: Props): JSX.Element {
               user={user}
             />
           ))}
-        </ScrollView>
+        </>
       )}
     </DefaultLayout>
   );

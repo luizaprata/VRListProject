@@ -1,11 +1,16 @@
 import React from 'react';
-import {SafeAreaView, StatusBar} from 'react-native';
+import {SafeAreaView, ScrollView, StatusBar, View} from 'react-native';
+import styles from './DefaultLayout.style';
 
 function DefaultLayout({children}: React.PropsWithChildren) {
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <SafeAreaView>{children}</SafeAreaView>
+      <SafeAreaView>
+        <ScrollView contentInsetAdjustmentBehavior="automatic">
+          <View style={[styles.container]}>{children}</View>
+        </ScrollView>
+      </SafeAreaView>
     </>
   );
 }

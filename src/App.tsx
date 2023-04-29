@@ -1,7 +1,7 @@
+import React from 'react';
 import ContactManagerRoutes from '@modules/contact-manager/ContactManagerRoutes';
 import {NavigationContainer} from '@react-navigation/native';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
-import React from 'react';
 if (__DEV__) {
   import('react-query-native-devtools').then(({addPlugin}) => {
     addPlugin({queryClient});

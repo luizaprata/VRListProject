@@ -1,9 +1,10 @@
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
-import {SafeAreaView, ScrollView, StatusBar, Text} from 'react-native';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {ScrollView, Text} from 'react-native';
 
 import {RootStackParamList} from '../ContactManagerRoutes';
 import useUserDetailQuery from '../hooks/useUserDetailQuery';
+import DefaultLayout from '@components/Layout/DefaultLayout';
 
 type Props = NativeStackScreenProps<
   RootStackParamList,
@@ -19,18 +20,15 @@ function ContactManagerDetailsScreen({route}: Props) {
   }
 
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        {isLoading ? (
-          <Text>Carregando...</Text>
-        ) : (
-          <ScrollView contentInsetAdjustmentBehavior="automatic">
-            <Text>{JSON.stringify(data, null, ' ')}</Text>
-          </ScrollView>
-        )}
-      </SafeAreaView>
-    </>
+    <DefaultLayout>
+      {isLoading ? (
+        <Text>Carregando...</Text>
+      ) : (
+        <ScrollView contentInsetAdjustmentBehavior="automatic">
+          <Text>{JSON.stringify(data, null, ' ')}</Text>
+        </ScrollView>
+      )}
+    </DefaultLayout>
   );
 }
 
