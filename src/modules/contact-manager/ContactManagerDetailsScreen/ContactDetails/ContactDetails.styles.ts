@@ -1,25 +1,23 @@
 import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
-  userContainer: {
+  container: {
+    flex: 1,
     flexDirection: 'column',
-    justifyContent: 'center',
-    alignContent: 'center',
+    flexWrap: 'nowrap',
+  },
+
+  infoContainer: {
+    paddingLeft: 20,
+    paddingRight: 20,
   },
 
   text: {
     fontSize: 20,
   },
 
-  arrow: {
-    fontSize: 20,
-    marginRight: 20,
-  },
-
   avatar: {
-    width: 100,
-    height: 100,
+    height: 200,
     backgroundColor: '#ccc',
-    borderRadius: 30,
   },
 });

@@ -22,6 +22,7 @@ function ContactManagerRoutes(): JSX.Element {
       <Stack.Screen
         name="ContactManagerDetails"
         component={ContactManagerDetailsScreen}
+        options={{title: 'Detalhes'}}
       />
     </Stack.Navigator>
   );

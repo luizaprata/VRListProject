@@ -23,7 +23,9 @@ function ContactManagerDetailsScreen({route}: Props) {
   } else {
     return (
       <DefaultLayout>
-        <ContactDetails user={data} />
+        <ScrollView contentInsetAdjustmentBehavior="automatic">
+          <ContactDetails user={data} />
+        </ScrollView>
       </DefaultLayout>
     );
   }
