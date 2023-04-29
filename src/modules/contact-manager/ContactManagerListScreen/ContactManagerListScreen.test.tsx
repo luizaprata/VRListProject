@@ -1,18 +1,27 @@
-import {fireEvent, render, screen} from '@testing-library/react-native';
+import { fireEvent, render, screen } from '@testing-library/react-native';
 import ContactManagerListScreen from './ContactManagerListScreen';
 import useUsersListQuery from '../hooks/useUsersListQuery';
 
 jest.mock('../hooks/useUsersListQuery');
 const mockedUseUsersQuery = useUsersListQuery as jest.Mock;
 
-describe('Users component', () => {
-  const navigationMock = {navigate: jest.fn()};
+describe('Contact Manager List Screen', () => {
+  const navigationMock = { navigate: jest.fn() };
 
   beforeEach(() => {
     navigationMock.navigate.mockClear();
   });
 
-  it('Displays the loading view', () => {
+  it('SHOULD call api WHEN page is loaded', () => {
+    mockedUseUsersQuery.mockImplementation(() => ({
+      id: 1,
+      firstName: 'test user',
+    }));
+    render(<ContactManagerListScreen navigation={navigationMock} />);
+    expect(mockedUseUsersQuery).toHaveBeenCalled();
+  });
+
+  it('SHOULD Displays the loading view WHEN users list api is fetching', () => {
     mockedUseUsersQuery.mockImplementation(() => ({
       isLoading: true,
     }));
@@ -20,20 +29,20 @@ describe('Users component', () => {
     expect(screen.getByText(/Carregando.../i)).toBeVisible();
   });
 
-  it('Displays the error message', () => {
+  it('SHOULD display the error message WHEN users list api returns an error', () => {
     mockedUseUsersQuery.mockImplementation(() => ({
-      error: {message: 'Error message'},
+      error: { message: 'Error message' },
     }));
     render(<ContactManagerListScreen navigation={navigationMock} />);
     expect(screen.getByText(/Error message/i)).toBeVisible();
   });
 
-  it('should render users list', () => {
+  it('SHOULD render users list WHEN users list is loaded', () => {
     mockedUseUsersQuery.mockImplementation(() => ({
       data: {
         users: [
-          {id: 1, firstName: 'test user'},
-          {id: 2, firstName: 'test user2'},
+          { id: 1, firstName: 'test user' },
+          { id: 2, firstName: 'test user2' },
         ],
       },
     }));
@@ -45,12 +54,12 @@ describe('Users component', () => {
     expect(screen.getByTestId('user-2')).toHaveTextContent('test user2');
   });
 
-  it('should navigate to details screen whe click to users button', () => {
+  it('SHOULD navigate to details screen WHEN the user press button details', () => {
     mockedUseUsersQuery.mockImplementation(() => ({
       data: {
         users: [
-          {id: 1, firstName: 'test user'},
-          {id: 2, firstName: 'test user2'},
+          { id: 1, firstName: 'test user' },
+          { id: 2, firstName: 'test user2' },
         ],
       },
     }));
@@ -60,7 +69,7 @@ describe('Users component', () => {
     fireEvent.press(button);
     expect(navigationMock.navigate).toHaveBeenCalledWith(
       'ContactManagerDetails',
-      {userId: 1},
+      { userId: 1 },
     );
   });
 });
