@@ -1,5 +1,5 @@
-import {fireEvent, render, screen} from '@testing-library/react-native';
 import React from 'react';
+import {fireEvent, render, screen} from '@testing-library/react-native';
 
 import useUsersListQuery from '../hooks/useUsersListQuery';
 import ContactManagerListScreen from './ContactManagerListScreen';
