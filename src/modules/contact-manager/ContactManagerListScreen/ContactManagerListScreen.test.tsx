@@ -1,3 +1,4 @@
+import React from 'react';
 import {fireEvent, render, screen} from '@testing-library/react-native';
 import ContactManagerListScreen from './ContactManagerListScreen';
 import useUsersListQuery from '../hooks/useUsersListQuery';
