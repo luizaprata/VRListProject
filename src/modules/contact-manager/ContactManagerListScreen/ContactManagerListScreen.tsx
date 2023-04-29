@@ -29,7 +29,7 @@ function ContactManagerListScreen({navigation}: Props): JSX.Element {
         <FlatList
           data={data?.users}
           keyExtractor={item => `userKey-${item.id}`}
-          ItemSeparatorComponent={<Separator />}
+          ItemSeparatorComponent={Separator}
           renderItem={listInfo => (
             <ContactItem onContactPress={onContactPress} user={listInfo.item} />
           )}

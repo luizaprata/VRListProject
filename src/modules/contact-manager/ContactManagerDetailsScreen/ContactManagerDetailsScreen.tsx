@@ -1,10 +1,11 @@
 import React from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {ScrollView, Text} from 'react-native';
+import {Image, ScrollView, Text} from 'react-native';
 
 import {RootStackParamList} from '../ContactManagerRoutes';
 import useUserDetailQuery from '../hooks/useUserDetailQuery';
 import DefaultLayout from '@components/Layout/DefaultLayout';
+import ContactDetails from './ContactDetails';
 
 type Props = NativeStackScreenProps<
   RootStackParamList,
@@ -13,21 +14,19 @@ type Props = NativeStackScreenProps<
 
 function ContactManagerDetailsScreen({route}: Props) {
   const {userId} = route.params;
-  const {isLoading, data, error} = useUserDetailQuery(userId);
+  const {status, data, error} = useUserDetailQuery(userId);
 
-  if (error) {
+  if (status === 'error') {
     return <Text>{error.message}</Text>;
+  } else if (status === 'loading') {
+    return <Text>Carregando...</Text>;
+  } else {
+    return (
+      <DefaultLayout>
+        <ContactDetails user={data} />
+      </DefaultLayout>
+    );
   }
-
-  return (
-    <DefaultLayout>
-      {isLoading ? (
-        <Text>Carregando...</Text>
-      ) : (
-        <Text>{JSON.stringify(data, null, ' ')}</Text>
-      )}
-    </DefaultLayout>
-  );
 }
 
 export default ContactManagerDetailsScreen;
