@@ -1,19 +1,15 @@
 import React from 'react';
 import {User} from '@api/types/User';
 import type {PropsWithChildren} from 'react';
-import {Image, TouchableOpacity, Text, ListRenderItemInfo} from 'react-native';
+import {Image, TouchableOpacity, Text} from 'react-native';
 import styles from './ContactItem.styles';
 
 type ContactItemProps = PropsWithChildren<{
-  listInfo: ListRenderItemInfo<User>;
+  user: User;
   onContactPress: (id: number) => void;
 }>;
 
-function ContactItem({
-  onContactPress,
-  listInfo,
-}: ContactItemProps): JSX.Element {
-  const user = listInfo.item;
+function ContactItem({onContactPress, user}: ContactItemProps): JSX.Element {
   return (
     <TouchableOpacity
       testID={`user-${user.id}`}
