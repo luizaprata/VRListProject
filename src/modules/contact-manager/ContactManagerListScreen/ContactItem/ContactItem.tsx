@@ -18,7 +18,7 @@ function ContactItem({
     <TouchableOpacity
       testID={`user-${user.id}`}
       onPress={() => onContactPress(user.id)}
-      style={styles.profileContainer}>
+      style={styles.userContainer}>
       <Image
         style={styles.avatar}
         source={{
