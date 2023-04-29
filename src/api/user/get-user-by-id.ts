@@ -1,4 +1,3 @@
-import {Pagination} from '@api/types/Pagination';
 import {User} from '@api/types/User';
 import {api} from '../axios.instance';
 

@@ -1,11 +1,10 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { render, screen } from '@testing-library/react-native';
+import {render, screen} from '@testing-library/react-native';
 import ContactManagerDetailsScreen from './ContactManagerDetailsScreen';
 import useUserDetailQuery from '../hooks/useUserDetailQuery';
 
 jest.mock('../hooks/useUserDetailQuery');
 const mockedUseUserDetailQuery = useUserDetailQuery as jest.Mock;
-const routeMock = { params: { userId: 1 } };
+const routeMock = {params: {userId: 1}};
 
 describe('Users component', () => {
   afterEach(() => {
@@ -31,11 +30,9 @@ describe('Users component', () => {
 
   it('SHOULD display the error message WHEN users details api returns an error', () => {
     mockedUseUserDetailQuery.mockImplementation(() => ({
-      error: { message: 'Error message' },
+      error: {message: 'Error message'},
     }));
     render(<ContactManagerDetailsScreen route={routeMock} />);
     expect(screen.getByText(/Error message/i)).toBeVisible();
   });
-
-
 });

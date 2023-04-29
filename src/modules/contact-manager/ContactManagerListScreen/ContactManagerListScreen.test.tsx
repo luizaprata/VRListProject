@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react-native';
+import {fireEvent, render, screen} from '@testing-library/react-native';
 import ContactManagerListScreen from './ContactManagerListScreen';
 import useUsersListQuery from '../hooks/useUsersListQuery';
 
@@ -6,7 +6,7 @@ jest.mock('../hooks/useUsersListQuery');
 const mockedUseUsersQuery = useUsersListQuery as jest.Mock;
 
 describe('Contact Manager List Screen', () => {
-  const navigationMock = { navigate: jest.fn() };
+  const navigationMock = {navigate: jest.fn()};
 
   beforeEach(() => {
     navigationMock.navigate.mockClear();
@@ -31,7 +31,7 @@ describe('Contact Manager List Screen', () => {
 
   it('SHOULD display the error message WHEN users list api returns an error', () => {
     mockedUseUsersQuery.mockImplementation(() => ({
-      error: { message: 'Error message' },
+      error: {message: 'Error message'},
     }));
     render(<ContactManagerListScreen navigation={navigationMock} />);
     expect(screen.getByText(/Error message/i)).toBeVisible();
@@ -41,8 +41,8 @@ describe('Contact Manager List Screen', () => {
     mockedUseUsersQuery.mockImplementation(() => ({
       data: {
         users: [
-          { id: 1, firstName: 'test user' },
-          { id: 2, firstName: 'test user2' },
+          {id: 1, firstName: 'test user'},
+          {id: 2, firstName: 'test user2'},
         ],
       },
     }));
@@ -58,8 +58,8 @@ describe('Contact Manager List Screen', () => {
     mockedUseUsersQuery.mockImplementation(() => ({
       data: {
         users: [
-          { id: 1, firstName: 'test user' },
-          { id: 2, firstName: 'test user2' },
+          {id: 1, firstName: 'test user'},
+          {id: 2, firstName: 'test user2'},
         ],
       },
     }));
@@ -69,7 +69,7 @@ describe('Contact Manager List Screen', () => {
     fireEvent.press(button);
     expect(navigationMock.navigate).toHaveBeenCalledWith(
       'ContactManagerDetails',
-      { userId: 1 },
+      {userId: 1},
     );
   });
 });
