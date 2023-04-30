@@ -13,7 +13,7 @@ type Props = NativeStackScreenProps<RootStackParamList, 'ContactManager'>;
 
 function ContactManagerListScreen({navigation}: Props): JSX.Element {
   const [searchPhrase, setSearchPhrase] = useState('');
-  const {isLoading, data, error} = useUsersListQuery(searchPhrase);
+  const {status, data, error} = useUsersListQuery(searchPhrase);
 
   if (error) {
     return <Text>{error.message}</Text>;
@@ -23,6 +23,8 @@ function ContactManagerListScreen({navigation}: Props): JSX.Element {
     navigation.navigate('ContactManagerDetails', {userId});
   };
 
+  console.log({status, data});
+
   return (
     <DefaultLayout>
       <SearchBar
@@ -30,7 +32,9 @@ function ContactManagerListScreen({navigation}: Props): JSX.Element {
         onChange={setSearchPhrase}
         testID="contact-search-bar"
       />
-      {isLoading ? (
+      {status === 'error' ? (
+        <Text>{error.message}</Text>
+      ) : status === 'loading' ? (
         <Text>Carregando...</Text>
       ) : (
         <FlatList

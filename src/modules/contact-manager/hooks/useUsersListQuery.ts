@@ -1,5 +1,8 @@
 import {getAllUsers, GetAllUsersResponse} from '@api/user/get-all-users';
-import {getAllUsersByName} from '@api/user/get-all-users-by-name';
+import {
+  getAllUsersByName,
+  GetAllUsersByNameResponse,
+} from '@api/user/get-all-users-by-name';
 import {userKeyFactory} from '@api/user/user-key-factory';
 import {useQuery} from '@tanstack/react-query';
 import {AxiosError} from 'axios';

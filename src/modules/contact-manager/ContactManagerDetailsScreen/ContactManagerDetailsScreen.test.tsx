@@ -1,7 +1,6 @@
 import React from 'react';
 import {render, screen, waitFor, within} from '@testing-library/react-native';
 import ContactManagerDetailsScreen from './ContactManagerDetailsScreen';
-import {getUsersByIdHandlerException} from '@api/__tests__/get-user-by-id.handler';
 
 jest.useFakeTimers();
 const routeMock = {params: {userId: 1}};
@@ -17,7 +16,7 @@ describe('ContactManagerDetailsScreen', () => {
   });
 
   it('SHOULD display the error message WHEN users details api returns an error', async () => {
-    global.mswServer.use(getUsersByIdHandlerException);
+    global.mswServer.use(global.getUsersByIdHandlerException);
 
     render(<ContactManagerDetailsScreen route={routeMock} />, {
       wrapper: global.createQueryClientWrapper(),

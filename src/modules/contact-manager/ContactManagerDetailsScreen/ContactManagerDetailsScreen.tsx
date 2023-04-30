@@ -16,19 +16,19 @@ function ContactManagerDetailsScreen({route}: Props) {
   const {userId} = route.params;
   const {status, data, error} = useUserDetailQuery(userId);
 
-  if (status === 'error') {
-    return <Text>{error.message}</Text>;
-  } else if (status === 'loading') {
-    return <Text>Carregando...</Text>;
-  } else {
-    return (
-      <DefaultLayout>
+  return (
+    <DefaultLayout>
+      {status === 'error' ? (
+        <Text>{error.message}</Text>
+      ) : status === 'loading' ? (
+        <Text>Carregando...</Text>
+      ) : (
         <ScrollView contentInsetAdjustmentBehavior="automatic">
           <ContactDetails user={data} />
         </ScrollView>
-      </DefaultLayout>
-    );
-  }
+      )}
+    </DefaultLayout>
+  );
 }
 
 export default ContactManagerDetailsScreen;
