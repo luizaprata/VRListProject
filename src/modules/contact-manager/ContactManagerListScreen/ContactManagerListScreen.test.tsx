@@ -63,7 +63,6 @@ describe('ContactManagerListScreen', () => {
 
 //   expect(mockedUseUsersQuery).toHaveBeenCalledWith('new value');
 // });
-
 // it('SHOULD display users list WHEN users list is loaded', () => {
 //   mockedUseUsersQuery.mockImplementation(() => ({
 //     data: {
