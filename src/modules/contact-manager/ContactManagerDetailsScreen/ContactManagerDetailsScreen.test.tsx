@@ -1,40 +1,32 @@
 import React from 'react';
-import {render, screen} from '@testing-library/react-native';
+import {render, screen, waitFor} from '@testing-library/react-native';
 
-import useUserDetailQuery from '../hooks/useUserDetailQuery';
 import ContactManagerDetailsScreen from './ContactManagerDetailsScreen';
+import {getUsersByIdHandlerException} from '@api/__tests__/get-user-by-id.handler';
 
-jest.mock('../hooks/useUserDetailQuery');
-const mockedUseUserDetailQuery = useUserDetailQuery as jest.Mock;
 const routeMock = {params: {userId: 1}};
 
 describe('Users component', () => {
-  afterEach(() => {
-    mockedUseUserDetailQuery.mockClear();
+  it('SHOULD render users list WHEN users detail is fetching', async () => {
+    render(<ContactManagerDetailsScreen route={routeMock} />, {
+      wrapper: global.createQueryClientWrapper(),
+    });
+    await waitFor(() =>
+      expect(screen.getByText(/Carregando.../i)).toBeVisible(),
+    );
   });
 
-  it('SHOULD call api WHEN page is loaded', () => {
-    mockedUseUserDetailQuery.mockImplementation(() => ({
-      id: 1,
-      firstName: 'test user',
-    }));
-    render(<ContactManagerDetailsScreen route={routeMock} />);
-    expect(mockedUseUserDetailQuery).toHaveBeenCalledWith(1);
-  });
+  it('SHOULD display the error message WHEN users details api returns an error', async () => {
+    global.mswServer.use(getUsersByIdHandlerException);
 
-  it('SHOULD render users list WHEN users detail is fetching', () => {
-    mockedUseUserDetailQuery.mockImplementation(() => ({
-      isLoading: true,
-    }));
-    render(<ContactManagerDetailsScreen route={routeMock} />);
-    expect(screen.getByText(/Carregando.../i)).toBeVisible();
-  });
+    render(<ContactManagerDetailsScreen route={routeMock} />, {
+      wrapper: global.createQueryClientWrapper(),
+    });
 
-  it('SHOULD display the error message WHEN users details api returns an error', () => {
-    mockedUseUserDetailQuery.mockImplementation(() => ({
-      error: {message: 'Error message'},
-    }));
-    render(<ContactManagerDetailsScreen route={routeMock} />);
-    expect(screen.getByText(/Error message/i)).toBeVisible();
+    await waitFor(() =>
+      expect(
+        screen.getByText(/Request failed with status code 500/i),
+      ).toBeVisible(),
+    );
   });
 });

@@ -37,3 +37,9 @@ export const getUsersByIdHandler = rest.get(
   getUsersByIdPath,
   async (req, res, ctx) => res(ctx.json(mockResponse)),
 );
+
+export const getUsersByIdHandlerException = rest.get(
+  getUsersByIdPath,
+  async (req, res, ctx) =>
+    res(ctx.status(500), ctx.json({message: 'Deliberately broken request'})),
+);
