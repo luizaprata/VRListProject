@@ -3,8 +3,8 @@ import {User} from '@api/types/User';
 import type {PropsWithChildren} from 'react';
 import {Dimensions, Image, View} from 'react-native';
 import styles from './ContactDetails.styles';
-import ContactSection from '../ContactSection';
-import ContactField from '../ContactField';
+import ContactSection from './ContactSection';
+import ContactField from './ContactField';
 import Separator from '@components/Separator';
 
 type ContactDetailProps = PropsWithChildren<{
