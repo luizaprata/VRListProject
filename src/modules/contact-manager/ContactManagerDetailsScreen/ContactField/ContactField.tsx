@@ -6,11 +6,16 @@ import styles from './ContactField.styles';
 type ContactDetailProps = PropsWithChildren<{
   label: string;
   value: string;
+  testID: string;
 }>;
 
-function ContactDetails({label, value}: ContactDetailProps): JSX.Element {
+function ContactDetails({
+  label,
+  value,
+  testID,
+}: ContactDetailProps): JSX.Element {
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID={testID}>
       <Text style={styles.label}>{label}</Text>
       <Text style={styles.value}>{value}</Text>
     </View>
