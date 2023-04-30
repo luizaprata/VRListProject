@@ -20,7 +20,7 @@ describe('Contact Manager List Screen', () => {
     expect(mockedUseUsersQuery).toHaveBeenCalledWith('');
   });
 
-  it('SHOULD call api WHEN search new term', async () => {
+  it('SHOULD call api WHEN has searched new term', async () => {
     mockedUseUsersQuery.mockImplementation(() => ({}));
     render(<ContactManagerListScreen navigation={navigationMock} />);
     const inputNode = await screen.findByTestId('contact-search-bar');
@@ -29,7 +29,7 @@ describe('Contact Manager List Screen', () => {
     expect(mockedUseUsersQuery).toHaveBeenCalledWith('new value');
   });
 
-  it('SHOULD Displays the loading view WHEN users list api is fetching', () => {
+  it('SHOULD display loading WHEN users list api is fetching', () => {
     mockedUseUsersQuery.mockImplementation(() => ({
       isLoading: true,
     }));
@@ -37,7 +37,7 @@ describe('Contact Manager List Screen', () => {
     expect(screen.getByText(/Carregando.../i)).toBeVisible();
   });
 
-  it('SHOULD display the error message WHEN users list api returns an error', () => {
+  it('SHOULD display error message WHEN users list api returns an error', () => {
     mockedUseUsersQuery.mockImplementation(() => ({
       error: {message: 'Error message'},
     }));
@@ -45,7 +45,7 @@ describe('Contact Manager List Screen', () => {
     expect(screen.getByText(/Error message/i)).toBeVisible();
   });
 
-  it('SHOULD render users list WHEN users list is loaded', () => {
+  it('SHOULD display users list WHEN users list is loaded', () => {
     mockedUseUsersQuery.mockImplementation(() => ({
       data: {
         users: [

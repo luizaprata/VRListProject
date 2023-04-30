@@ -1,6 +1,6 @@
 import React from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {Image, ScrollView, Text} from 'react-native';
+import {ScrollView, Text} from 'react-native';
 
 import {RootStackParamList} from '../ContactManagerRoutes';
 import useUserDetailQuery from '../hooks/useUserDetailQuery';

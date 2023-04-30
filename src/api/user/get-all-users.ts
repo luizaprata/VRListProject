@@ -1,14 +1,11 @@
 import {Pagination} from '@api/types/Pagination';
 import {User} from '@api/types/User';
-
-import {api} from '../axios.instance';
+import {api} from '@api/axios.instance';
 
 export type GetAllUsersResponse = Pagination & {users: User[]};
+export const getPath = () => '/users';
 
-export const getAllUsers = async (userName?: string, signal?: AbortSignal) => {
-  const fetchApi = await api.get<GetAllUsersResponse>(
-    userName ? `/users/search?q=${userName}` : '/users',
-    {signal},
-  );
+export const getAllUsers = async (signal?: AbortSignal) => {
+  const fetchApi = await api.get<GetAllUsersResponse>(getPath(), {signal});
   return fetchApi.data;
 };

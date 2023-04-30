@@ -1,9 +1,10 @@
 import {User} from '@api/types/User';
-
-import {api} from '../axios.instance';
+import {api} from '@api/axios.instance';
 
 export type GetUsersByIdResponse = User;
+export const getPath = (id: number) => `/users/${id}`;
 
 export const getUserById = async (id: number) => {
-  return (await api.get<GetUsersByIdResponse>(`/users/${id}`)).data;
+  const fetchApi = await api.get<GetUsersByIdResponse>(getPath(id));
+  return fetchApi.data;
 };
