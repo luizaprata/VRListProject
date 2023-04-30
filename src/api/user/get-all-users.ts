@@ -5,11 +5,10 @@ import {api} from '../axios.instance';
 
 export type GetAllUsersResponse = Pagination & {users: User[]};
 
-export const getAllUsers = async (userName?: string) => {
-  console.log(userName);
+export const getAllUsers = async (userName?: string, signal?: AbortSignal) => {
   const fetchApi = await api.get<GetAllUsersResponse>(
     userName ? `/users/search?q=${userName}` : '/users',
+    {signal},
   );
-  console.log(fetchApi.config.url);
   return fetchApi.data;
 };

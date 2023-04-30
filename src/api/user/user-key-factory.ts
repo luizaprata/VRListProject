@@ -1,5 +1,8 @@
 const prefix = 'USER';
 export const userKeyFactory = {
-  allUsers: (filter?: number) => [prefix, filter ? filter : 'all'],
+  allUsers: (searchPhrase: string) => [
+    prefix,
+    searchPhrase.length > 2 ? searchPhrase : 'all',
+  ],
   userById: (userId: number) => [prefix, 'id', `${userId}`],
 } as const;

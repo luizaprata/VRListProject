@@ -12,8 +12,8 @@ import SearchBar from '@components/SearchBar';
 type Props = NativeStackScreenProps<RootStackParamList, 'ContactManager'>;
 
 function ContactManagerListScreen({navigation}: Props): JSX.Element {
-  const [newSearchPhrase, setNewSearchPhrase] = useState('');
-  const {isLoading, data, error} = useUsersListQuery(newSearchPhrase);
+  const [searchPhrase, setSearchPhrase] = useState('');
+  const {isLoading, data, error} = useUsersListQuery(searchPhrase);
 
   if (error) {
     return <Text>{error.message}</Text>;
@@ -25,7 +25,11 @@ function ContactManagerListScreen({navigation}: Props): JSX.Element {
 
   return (
     <DefaultLayout>
-      <SearchBar onChange={searchPhrase => setNewSearchPhrase(searchPhrase)} />
+      <SearchBar
+        searchPhrase={searchPhrase}
+        onChange={setSearchPhrase}
+        testID="contact-search-bar"
+      />
       {isLoading ? (
         <Text>Carregando...</Text>
       ) : (

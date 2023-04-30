@@ -15,12 +15,18 @@ describe('Contact Manager List Screen', () => {
   });
 
   it('SHOULD call api WHEN page is loaded', () => {
-    mockedUseUsersQuery.mockImplementation(() => ({
-      id: 1,
-      firstName: 'test user',
-    }));
+    mockedUseUsersQuery.mockImplementation(() => ({}));
     render(<ContactManagerListScreen navigation={navigationMock} />);
-    expect(mockedUseUsersQuery).toHaveBeenCalled();
+    expect(mockedUseUsersQuery).toHaveBeenCalledWith('');
+  });
+
+  it('SHOULD call api WHEN search new term', async () => {
+    mockedUseUsersQuery.mockImplementation(() => ({}));
+    render(<ContactManagerListScreen navigation={navigationMock} />);
+    const inputNode = await screen.findByTestId('contact-search-bar');
+    fireEvent.changeText(inputNode, 'new value');
+
+    expect(mockedUseUsersQuery).toHaveBeenCalledWith('new value');
   });
 
   it('SHOULD Displays the loading view WHEN users list api is fetching', () => {

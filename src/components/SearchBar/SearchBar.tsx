@@ -1,24 +1,21 @@
-import React, {PropsWithChildren, useEffect, useState} from 'react';
+import React, {PropsWithChildren} from 'react';
 import styles from './SearchBar.styles';
 import {TextInput} from 'react-native';
 
 type SearchBarProps = PropsWithChildren<{
-  onChange: (searchPhrase: string) => void;
+  searchPhrase: string;
+  testID: string;
+  onChange: (newPhase: string) => void;
 }>;
 
-function SearchBar({onChange}: SearchBarProps) {
-  const [searchPhrase, setSearchPhrase] = useState('');
-
-  useEffect(() => {
-    onChange(searchPhrase);
-  }, [searchPhrase, onChange]);
-
+function SearchBar({searchPhrase, onChange, testID}: SearchBarProps) {
   return (
     <TextInput
       style={styles.input}
-      placeholder="Search"
+      placeholder="Buscar por nome"
       value={searchPhrase}
-      onChangeText={setSearchPhrase}
+      onChangeText={onChange}
+      testID={testID}
     />
   );
 }
