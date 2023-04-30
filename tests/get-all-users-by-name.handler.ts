@@ -1,7 +1,10 @@
 import {BASE_URL} from '@api/axios.instance';
 
 import {rest} from 'msw';
-import {GetAllUsersByNameResponse, getPath} from '../get-all-users-by-name';
+import {
+  GetAllUsersByNameResponse,
+  getPath,
+} from '@api/user/get-all-users-by-name';
 
 const mockResponse: GetAllUsersByNameResponse = [
   {
@@ -42,7 +45,7 @@ const mockResponse: GetAllUsersByNameResponse = [
 
 const getAllUsersByNamePath = `${BASE_URL}${getPath('Terry')}`;
 
-export const getUsersByIdHandler = rest.get(
+export const getAllUsersByNameHandler = rest.get(
   getAllUsersByNamePath,
   async (req, res, ctx) => res(ctx.json(mockResponse)),
 );

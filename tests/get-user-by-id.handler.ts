@@ -1,7 +1,7 @@
 import {BASE_URL} from '@api/axios.instance';
 
 import {rest} from 'msw';
-import {GetUsersByIdResponse, getPath} from '../get-user-by-id';
+import {GetUsersByIdResponse, getPath} from '@api/user/get-user-by-id';
 
 const mockResponse: GetUsersByIdResponse = {
   id: 1,

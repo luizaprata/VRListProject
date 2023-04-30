@@ -1,4 +1,8 @@
 module.exports = {
   preset: 'react-native',
-  setupFilesAfterEnv: ['@testing-library/jest-native/extend-expect'],
+  setupFiles: ['<rootDir>/tests/helpers/create-query-client-wrapper.tsx'],
+  setupFilesAfterEnv: [
+    '@testing-library/jest-native/extend-expect',
+    '<rootDir>/tests/setupServerTests.ts',
+  ],
 };

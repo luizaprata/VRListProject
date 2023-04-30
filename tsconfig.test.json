@@ -1,0 +1,4 @@
+{
+  "extends": "./tsconfig.json",
+  "files": ["./tests/helpers/create-query-client-wrapper.d.ts"]
+}
