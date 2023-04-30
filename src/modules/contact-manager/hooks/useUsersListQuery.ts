@@ -3,10 +3,10 @@ import {userKeyFactory} from '@api/user/user-key-factory';
 import {useQuery} from '@tanstack/react-query';
 import {AxiosError} from 'axios';
 
-export default function useUsersListQuery() {
+export default function useUsersListQuery(filter?: string) {
   return useQuery<GetAllUsersResponse, AxiosError>({
-    queryKey: userKeyFactory.allUsers,
-    queryFn: getAllUsers,
+    queryKey: userKeyFactory.allUsers(filter),
+    queryFn: () => getAllUsers(filter),
     staleTime: Infinity,
   });
 }
