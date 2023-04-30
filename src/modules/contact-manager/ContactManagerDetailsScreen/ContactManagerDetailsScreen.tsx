@@ -15,6 +15,7 @@ type Props = NativeStackScreenProps<
 function ContactManagerDetailsScreen({route}: Props) {
   const {userId} = route.params;
   const {status, data, error} = useUserDetailQuery(userId);
+
   if (status === 'error') {
     return <Text>{error.message}</Text>;
   } else if (status === 'loading') {
