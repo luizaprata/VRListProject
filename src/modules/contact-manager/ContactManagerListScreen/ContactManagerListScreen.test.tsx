@@ -5,6 +5,7 @@ import {
   render,
   screen,
   waitFor,
+  within,
 } from '@testing-library/react-native';
 import ContactManagerListScreen from './ContactManagerListScreen';
 
@@ -52,30 +53,30 @@ describe('ContactManagerListScreen', () => {
       {userId: 1},
     );
   });
+
+  it('SHOULD display users list WHEN users list is loaded', async () => {
+    render(<ContactManagerListScreen navigation={navigationMock} />, {
+      wrapper: global.createQueryClientWrapper(),
+    });
+
+    const elm1 = await waitFor(() => screen.getByTestId('user-1'));
+    const {getByText: textElm1} = within(elm1);
+    expect(textElm1('Terry Medhurst')).toBeOnTheScreen();
+
+    const elm2 = await waitFor(() => screen.getByTestId('user-28'));
+    const {getByText: textElm2} = within(elm2);
+    expect(textElm2('Kody Terry')).toBeOnTheScreen();
+  });
+
+  it('SHOULD call api WHEN has searched new term', async () => {
+    render(<ContactManagerListScreen navigation={navigationMock} />, {
+      wrapper: global.createQueryClientWrapper(),
+    });
+    const inputNode = await screen.findByTestId('contact-search-bar');
+    fireEvent.changeText(inputNode, 'new value');
+
+    const elm = await waitFor(() => screen.getByTestId('user-2'));
+    const {getByText} = within(elm);
+    expect(getByText('Sheldon Quigley')).toBeOnTheScreen();
+  });
 });
-
-// it('SHOULD call api WHEN has searched new term', async () => {
-//   render(<ContactManagerListScreen navigation={navigationMock} />, {
-//     wrapper: global.createQueryClientWrapper(),
-//   });
-//   const inputNode = await screen.findByTestId('contact-search-bar');
-//   fireEvent.changeText(inputNode, 'new value');
-
-//   expect(mockedUseUsersQuery).toHaveBeenCalledWith('new value');
-// });
-// it('SHOULD display users list WHEN users list is loaded', () => {
-//   mockedUseUsersQuery.mockImplementation(() => ({
-//     data: {
-//       users: [
-//         {id: 1, firstName: 'test user'},
-//         {id: 2, firstName: 'test user2'},
-//       ],
-//     },
-//   }));
-//   render(<ContactManagerListScreen navigation={navigationMock} />);
-//   expect(screen.getByTestId('user-1')).toBeVisible();
-//   expect(screen.getByTestId('user-1')).toHaveTextContent('test user');
-
-//   expect(screen.getByTestId('user-2')).toBeVisible();
-//   expect(screen.getByTestId('user-2')).toHaveTextContent('test user2');
-// });
